@@ -38,6 +38,7 @@ module.exports = {
      * Creates a Signing Key based on a type passed. By default set to the `String` 'Buffer'.
      * @param {String} type The type for the Buffer required. By default is set to "Buffer".
      * @returns {String} The Signing Key Secret in Base64 String format.
+     * The signingKey is stored in .txt format. If the file already exists, the existing signing key will be used. To create a new signing key, delete the existing file.
      */
     function createSigningKey(type = "Buffer") {
       if (fs.existsSync(keyFilePath)) {

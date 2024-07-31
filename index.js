@@ -19,10 +19,14 @@ console.log(`signing key: ${signingKey} \n`);
 // Create a `claims` object
 var claims = {
   iss: "http://myapp.com/", // The URL of your service
-  // sub: "users/user1234",
   sub: "users/user2345", // The UID of the user in your system
   scope: "self, admins",
-  aud: "<your-app-id>", // Your APP ID
+  aud: "<app_id>", // Your APP ID
+  // Metadata fiels (optional). For more information, click here: https://www.mongodb.com/docs/atlas/app-services/authentication/custom-jwt/#metadata-fields
+  user_data: {
+    name: "josman",
+    email: "test@test.com",
+  },
 };
 
 // Create a token
@@ -30,7 +34,6 @@ var claims = {
 // By default the response will return the JWT String token
 var jwt = helper.createToken(claims, signingKey);
 var login = true;
-// app.currentUser == null ||
 if (login == true) {
   const credentials = Realm.Credentials.jwt(jwt);
   app.logIn(credentials);
